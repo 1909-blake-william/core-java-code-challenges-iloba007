@@ -433,7 +433,7 @@ public class EvaluationServiceTest {
 	 * Question 12
 	 ******************************************************************/
 	@Test
-	public void testFirstPrime() {
+	public void tetFirstPrime() {
 		assertThat(evaluationService.calculateNthPrime(1), is(2));
 	}
 
