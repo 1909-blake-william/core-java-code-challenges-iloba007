@@ -1,10 +1,20 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.xml.bind.annotation.W3CDomHandler;
 
 public class EvaluationService {
+
+	private static Object map;
 
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
@@ -27,12 +37,19 @@ public class EvaluationService {
 	 * long name like Portable Network Graphics to its acronym (PNG).
 	 * 
 	 * @param phrase
-	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String text = phrase;
+		//System.out.println(text);
+		String acronym = "";
+		for(char c: text.toCharArray())
+			if(Character.isUpperCase(c))
+		       acronym += c;
+//		System.out.println(acronym);
+		return acronym;
 	}
+		
+	
 
 	/**
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
@@ -85,23 +102,49 @@ public class EvaluationService {
 
 		public boolean isEquilateral() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (sideOne == sideTwo && sideTwo == sideThree && sideOne == sideThree){
+
+			    return true;
+
+			} else
+
+			    return false;
+
 		}
 
 		public boolean isIsosceles() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (sideOne == sideTwo || sideTwo == sideThree || sideOne == sideThree){
+
+			    return true;
+
+			} else
+
+			    return false;
+
 		}
 
 		public boolean isScalene() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			
+			if (sideOne != sideTwo && sideTwo != sideThree && sideOne != sideThree){
+
+			    return true;
+
+			} else
+
+			    return false;
+
 		}
+
+
 
 	}
 
+
 	/**
-	 * 4. Given a word, compute the scrabble score for that word.
+	 * 4. Given a word, compute the S
+	 * Scrabble score for that word.
 	 * 
 	 * --Letter Values-- Letter Value A, E, I, O, U, L, N, R, S, T = 1; D, G = 2; B,
 	 * C, M, P = 3; F, H, V, W, Y = 4; K = 5; J, X = 8; Q, Z = 10; Examples
@@ -117,8 +160,164 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+     int score = 0;
+       //below is the solution for the ScrabbleScore.
+       //using a switch to go through each case character
+     // and breaking to score T,G,B,P,Y,K & Z
+	// decided to use upper cases and lower cases to identify the cases
+
+		for(int i=0; i < string.length(); i++) {
+
+			char letter = string.charAt(i);
+
+			switch(letter) {
+
+				case 'a':
+
+				case 'A':
+
+				case 'e':
+
+				case 'E':
+
+				case 'i':
+
+				case 'I':
+
+				case 'o':
+
+				case 'O':
+
+				case 'u':
+
+				case 'U':
+
+				case 'l':
+
+				case 'L':
+
+				case 'n':
+
+				case 'N':
+
+				case 'r':
+
+				case 'R':
+
+				case 's':
+
+				case 'S':
+
+				case 't':
+
+				case 'T':
+
+					score += 1;
+
+					break;
+
+				case 'd':
+
+				case 'D':
+
+				case 'g':
+
+				case 'G':
+
+					score += 2;
+
+					break;
+
+				case 'b':
+
+				case 'B':
+
+				case 'c':
+
+				case 'C':
+
+				case 'm':
+
+				case 'M':
+
+				case 'p':
+
+				case 'P':
+
+					score += 3;
+
+					break;
+
+				case 'f':
+
+				case 'F':
+
+				case 'h':
+
+				case 'H':
+
+				case 'v':
+
+				case 'V':
+
+				case 'w':
+
+				case 'W':
+
+				case 'y':
+
+				case 'Y':
+
+					score += 4;
+
+					break;
+
+				case 'k':
+
+				case 'K':
+
+					score += 5;
+
+					break;
+
+				case 'j':
+
+				case 'J':
+
+				case 'x':
+
+				case 'X':
+
+					score += 8;
+
+					break;
+
+				case 'q':
+
+				case 'Q':
+
+				case 'z':
+
+				case 'Z':
+
+					score += 10;
+
+					break;
+
+			}
+
+		}
+
+		
+
+		return score;
+
 	}
+
+		
+		
+		
+	
 
 	/**
 	 * 5. Clean up user-entered phone numbers so that they can be sent SMS messages.
@@ -152,8 +351,26 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String newernumber = "";
+
+		for(int i=0; i<string.length(); i++) {
+
+			char digit = string.charAt(i);
+
+			if(digit == '-' || digit == ' ' || digit == '(' || digit == ')' || digit == '.') {
+
+				continue;
+
+			}
+
+			newernumber = newernumber + string.charAt(i);
+
+			
+
+		}
+
+		return newernumber;
+
 	}
 
 	/**
@@ -163,12 +380,36 @@ public class EvaluationService {
 	 * free: 1
 	 * 
 	 * @param string
-	 * @return
+	 * @return+m1
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
-	}
+		  HashMap<String, Integer> wordCounts = new HashMap<>();
+ 
+			Scanner parser = new Scanner(string);
+	
+			parser.useDelimiter("[^a-zA-Z']+");
+			String parsedString = "";
+			
+			while (parser.hasNext()) {
+				parsedString = parser.next();
+				
+				if (wordCounts.containsKey(parsedString)) {
+					wordCounts.put(parsedString, wordCounts.get(parsedString) + 1);
+				} 
+				else {
+					wordCounts.put(parsedString, 1);
+				}
+			}
+			
+			parser.close();
+			
+			return wordCounts;
+		}
+		
+	
+
+
 
 	/**
 	 * 7. Implement a binary search algorithm.
@@ -225,6 +466,7 @@ public class EvaluationService {
 		public void setSortedList(List<T> sortedList) {
 			this.sortedList = sortedList;
 		}
+		
 
 	}
 
@@ -247,8 +489,29 @@ public class EvaluationService {
 	 */
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
-	}
+
+	        Pattern vowel = Pattern.compile("^([aeiou]|y[^aeiou]|xr)");
+	        
+	        Pattern consone = Pattern.compile("^([^aeiou]?qu|[^aeiouy]+|y(?=[aeiou]))");
+
+	        String PigLatin = "";
+	        for (String word: string.split(" ")) {
+	            if (vowel.matcher(word).find()) 
+	                PigLatin += word;
+	            
+	            else {
+	                Matcher z = consone.matcher(word);
+	                if (z.find())
+	                    PigLatin += word.substring(z.end()) + z.group();
+	            }
+	            PigLatin += "ay ";
+	        }
+
+	        return PigLatin.substring(0, PigLatin.length() - 1);
+	    }
+
+	
+	
 
 	/**
 	 * 9. An Armstrong number is a number that is the sum of its own digits each
@@ -267,9 +530,40 @@ public class EvaluationService {
 	 */
 	public boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
-		return false;
-	}
+		
+        	int digits = ((int)Math.log10(Math.abs((double)input))) + 1;
 
+		
+
+			double armstrongSum = 0;
+
+			
+
+			int digit = 0;
+
+			
+
+
+			for (int i=0; i<digits; i++) {
+
+			 
+
+				digit = (int)(input % Math.pow(10, i+1) / Math.pow(10, i));
+
+				
+
+				
+
+				armstrongSum += Math.pow(digit, digits);
+
+			}
+
+			
+ 
+
+			return armstrongSum == (double)input;
+			
+	}
 	/**
 	 * 10. Compute the prime factors of a given natural number.
 	 * 
@@ -280,10 +574,16 @@ public class EvaluationService {
 	 * @param l
 	 * @return
 	 */
-	public List<Long> calculatePrimeFactorsOf(long l) {
+	public List<Long> calculatePrimeFactorsOf1(long l) {
 		// TODO Write an implementation for this method declaration
-		return null;
-	}
+	
+		public static List primeFactors(int number) {
+			 int n = number;
+			 List primeFactors = new ArrayList();
+			 for (int i = 2; i <= n/i; i++) { while (n % i == 0) { primeFactors.add(i); n /= i; } } if(n>1)
+			 primeFactors.add(n);
+			 return primeFactors;
+			 }
 
 	/**
 	 * 11. Create an implementation of the rotational cipher, also sometimes called
