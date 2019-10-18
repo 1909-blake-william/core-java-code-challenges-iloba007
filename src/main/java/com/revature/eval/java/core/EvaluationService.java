@@ -153,7 +153,7 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		int score = 0;
+		int score_points = 0;
 		//using a break to score T,G,Y,K,X,Z,C,B,G,E
 		// Use a switch to run through all the elements while scoring at specific letters
 		//used upper and lower case letter as an identify of the letters.
@@ -205,7 +205,7 @@ public class EvaluationService {
 
 			case 'T':
 
-				score += 1;
+				score_points += 1;
 
 				break;
 
@@ -217,7 +217,7 @@ public class EvaluationService {
 
 			case 'G':
 
-				score += 2;
+				score_points += 2;
 
 				break;
 
@@ -237,7 +237,7 @@ public class EvaluationService {
 
 			case 'P':
 
-				score += 3;
+				score_points += 3;
 
 				break;
 
@@ -261,7 +261,7 @@ public class EvaluationService {
 
 			case 'Y':
 
-				score += 4;
+				score_points += 4;
 
 				break;
 
@@ -269,7 +269,7 @@ public class EvaluationService {
 
 			case 'K':
 
-				score += 5;
+				score_points += 5;
 
 				break;
 
@@ -281,7 +281,7 @@ public class EvaluationService {
 
 			case 'X':
 
-				score += 8;
+				score_points += 8;
 
 				break;
 
@@ -293,7 +293,7 @@ public class EvaluationService {
 
 			case 'Z':
 
-				score += 10;
+				score_points += 10;
 
 				break;
 
@@ -301,7 +301,7 @@ public class EvaluationService {
 
 		}
 
-		return score;
+		return score_points;
 
 	}
 
